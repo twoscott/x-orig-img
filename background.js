@@ -17,7 +17,7 @@ function multiReplace(string_var, replace_pairs) {
 }
 
 browser.webRequest.onHeadersReceived.addListener(details => {
-    let url_split = details.url.split("/"); filename = url_split[url_split.length - 1];
+    let url_split = details.url.split("/"); let filename = url_split[url_split.length - 1];
     let fixed_filename = multiReplace(filename, extension_replacements);
     details.responseHeaders.push({name: "content-disposition", value: "inline; filename=\"" + fixed_filename + "\";"});
 
