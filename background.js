@@ -3,24 +3,29 @@ if (!chrome){
 	browser = browser;
 }
 
-extension_replacements = {".jpg:orig"  : ".jpg", ".png:orig"  : ".png",
-                          ".jpg:large" : ".jpg", ".png:large" : ".png",
-                          ".jpg:medium": ".jpg", ".png:medium": ".png",
-                          ".jpg:small" : ".jpg", ".png:small" : ".png",
-                          ".jpg:tiny"  : ".jpg", ".png:tiny"  : ".png"}
-
-function multiReplace(string_var, replace_pairs) {
-    for (let [key, val] of Object.entries(replace_pairs)) {
-        string_var = string_var.replace(key, val);
-    }
-    return string_var
-}
+browser.webRequest.onBeforeRequest.addListener(details => {
+    var url = details.url;    
+    if (!url.match(/:orig$/)) {
+        var filename = url.substring(url.lastIndexOf("/") + 1, url.length);
+        var base_url = url.substring(0, url.lastIndexOf("/") + 1);
+        if (filename.includes(":")) {
+            filename = filename.substring(0, filename.lastIndexOf(":"))
+        }
+        var new_url = (base_url + filename + ":orig")
+        return {redirectUrl: new_url}
+    } 
+},
+{
+    urls: ["*://pbs.twimg.com/media/*"]
+},
+          ["blocking"])
 
 browser.webRequest.onHeadersReceived.addListener(details => {
-    let url_split = details.url.split("/"); let filename = url_split[url_split.length - 1];
-    let fixed_filename = multiReplace(filename, extension_replacements);
-    details.responseHeaders.push({name: "content-disposition", value: "inline; filename=\"" + fixed_filename + "\";"});
+    var url_split = details.url.split("/"); 
+    var filename = url_split[url_split.length - 1];
+    var fixed_filename = filename.replace(/:[a-z]+/i, "")
 
+    details.responseHeaders.push({name: "content-disposition", value: "inline; filename=\"" + fixed_filename + "\";"});
     return {responseHeaders: details.responseHeaders}
 },
 {
