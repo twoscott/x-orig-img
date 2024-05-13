@@ -1,6 +1,6 @@
-# no-orig
-save images as .jpg instead of .jpg_orig
+# X Original Images
+redirects to highest available quality images on X
 
-#### download here:
-> https://chrome.google.com/webstore/detail/twitter-orig/abhahfjacodgcpjmnofopebllmgmdlef
+#### Download Here:
+> https://chromewebstore.google.com/detail/x-original-images/abhahfjacodgcpjmnofopebllmgmdlef
 > https://addons.mozilla.org/en-US/firefox/addon/-_orig/
