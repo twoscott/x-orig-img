@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "priority": 1,
+        "condition": {
+            "urlFilter": "||pbs.twimg.com/media/*format=jpg",
+            "requestMethods": [
+                "get"
+            ],
+            "resourceTypes": [
+                "main_frame"
+            ]
+        },
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "transform": {
+                    "queryTransform": {
+                        "addOrReplaceParams": [
+                            {
+                                "key": "name",
+                                "value": "orig"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    {
+        "id": 2,
+        "priority": 1,
+        "condition": {
+            "urlFilter": "||pbs.twimg.com/media/*format=png",
+            "requestMethods": [
+                "get"
+            ],
+            "resourceTypes": [
+                "main_frame"
+            ]
+        },
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "transform": {
+                    "queryTransform": {
+                        "addOrReplaceParams": [
+                            {
+                                "key": "name",
+                                "value": "large"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+]
