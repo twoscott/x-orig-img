@@ -3,7 +3,7 @@
         "id": 1,
         "priority": 1,
         "condition": {
-            "urlFilter": "||pbs.twimg.com/media/*format=jpg",
+            "regexFilter": "^(https?://pbs\\.twimg\\.com/media/\\w+?)\\.(jpg|png).*$",
             "requestMethods": [
                 "get"
             ],
@@ -14,16 +14,7 @@
         "action": {
             "type": "redirect",
             "redirect": {
-                "transform": {
-                    "queryTransform": {
-                        "addOrReplaceParams": [
-                            {
-                                "key": "name",
-                                "value": "orig"
-                            }
-                        ]
-                    }
-                }
+                "regexSubstitution": "\\1?format=\\2&name=orig"
             }
         }
     },
@@ -31,7 +22,7 @@
         "id": 2,
         "priority": 1,
         "condition": {
-            "urlFilter": "||pbs.twimg.com/media/*format=png",
+            "regexFilter": "^https?://pbs\\.twimg\\.com/media/.+?[\\?&]format=(jpg|png).*$",
             "requestMethods": [
                 "get"
             ],
