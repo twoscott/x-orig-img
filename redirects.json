@@ -47,7 +47,7 @@
                         "addOrReplaceParams": [
                             {
                                 "key": "name",
-                                "value": "large"
+                                "value": "orig"
                             }
                         ]
                     }

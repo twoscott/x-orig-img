@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "X Original Images",
     "description": "Redirects X/Twitter image URLs to get the best possible image quality.",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "icons": {
         "16": "./icons/iconx16.png",
         "48": "./icons/iconx48.png",
